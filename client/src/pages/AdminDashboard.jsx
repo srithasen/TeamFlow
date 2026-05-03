@@ -47,8 +47,8 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "teamflow-production-f8a9.up.railway.app/projects",
-                {
+   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -72,8 +72,8 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "teamflow-production-f8a9.up.railway.app/tasks",
-                {
+   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -98,7 +98,7 @@ const [deadline, setDeadline] =
           localStorage.getItem("token");
 
         const response = await axios.get(
-            "teamflow-production-f8a9.up.railway.app/team",
+            "https://zestful-patience-production-a8c1.up.railway.app/team",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -125,7 +125,7 @@ const [deadline, setDeadline] =
 
             await axios.post(
 
-                "teamflow-production-f8a9.up.railway.app/projects",
+                "https://teamflow-production-f8a9.up.railway.app/projects",
 
                 {
                     title,
@@ -166,7 +166,7 @@ const [deadline, setDeadline] =
 
         await axios.post(
 
-            "teamflow-production-f8a9.up.railway.app/tasks",
+            "https://teamflow-production-f8a9.up.railway.app/tasks",
 
             {
                 project_id: selectedProject,
@@ -197,20 +197,20 @@ const [deadline, setDeadline] =
 };
 
     const completedTasks =
-        tasks.filter(task => task.status === "completed");
+        (tasks || []).filter(task => task.status === "completed");
 
     const pendingTasks =
-        tasks.filter(task => task.status === "pending");
+        (tasks || []).filter(task => task.status === "pending");
 
     const inProgressTasks =
-        tasks.filter(task => task.status === "in_progress");
+        (tasks || []).filter(task => task.status === "in_progress");
 
     const progress =
-        tasks.length > 0
-            ? Math.round(
-                (completedTasks.length / tasks.length) * 100
-            )
-            : 0;
+    tasks?.length > 0
+        ? Math.round(
+            ((completedTasks?.length || 0) / tasks.length) * 100
+        )
+        : 0;
 
     return (
 
@@ -413,7 +413,7 @@ Assign Task
                     </p>
 
                     <h2 className="text-5xl font-bold">
-                        {projects.length}
+                        {projects?.length || 0}
                     </h2>
 
                 </div>
@@ -425,7 +425,7 @@ Assign Task
                     </p>
 
                     <h2 className="text-5xl font-bold text-green-700">
-                        {completedTasks.length}
+                        {completedtasks?.length || 0}
                     </h2>
 
                 </div>
@@ -437,7 +437,7 @@ Assign Task
                     </p>
 
                     <h2 className="text-5xl font-bold text-blue-600">
-                        {inProgressTasks.length}
+                        {inProgressTasks?.length || 0}
                     </h2>
 
                 </div>
@@ -449,7 +449,7 @@ Assign Task
                     </p>
 
                     <h2 className="text-5xl font-bold text-yellow-500">
-                        {pendingTasks.length}
+                        {pendingTasks?.length || 0}
                     </h2>
 
                 </div>
