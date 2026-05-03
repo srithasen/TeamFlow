@@ -27,7 +27,7 @@ function ProjectsPage() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "teamflow-production-f8a9.up.railway.app/projects",
+                "https://zestful-patience-production-a8c1.up.railway.app/projects",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -55,7 +55,7 @@ function ProjectsPage() {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                "teamflow-production-f8a9.up.railway.app/projects",
+                "https://zestful-patience-production-a8c1.up.railway.app/projects",
                 {
                     title,
                     description

@@ -125,7 +125,7 @@ const [deadline, setDeadline] =
 
             await axios.post(
 
-                "https://teamflow-production-f8a9.up.railway.app/projects",
+                "https://zestful-patience-production-a8c1.up.railway.app/projects",
 
                 {
                     title,
@@ -166,7 +166,7 @@ const [deadline, setDeadline] =
 
         await axios.post(
 
-            "https://teamflow-production-f8a9.up.railway.app/tasks",
+            "https://zestful-patience-production-a8c1.up.railway.app/tasks",
 
             {
                 project_id: selectedProject,

@@ -24,7 +24,7 @@ const TeamPage = () => {
         localStorage.getItem("token");
 
       const res = await axios.get(
-        "https://teamflow-production-f8a9.up.railway.app/team",
+        "https://zestful-patience-production-a8c1.up.railway.app/team",
         {
           headers: {
             Authorization: `Bearer ${token}`

@@ -42,7 +42,7 @@ const fetchProjects = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "https://teamflow-production-f8a9.up.railway.app/projects",
+            "https://zestful-patience-production-a8c1.up.railway.app/projects",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -67,7 +67,7 @@ const fetchUsers = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "https://teamflow-production-f8a9.up.railway.app/users",
+            "https://zestful-patience-production-a8c1.up.railway.app/users",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -92,7 +92,7 @@ const fetchTasks = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "https://teamflow-production-f8a9.up.railway.app/my-tasks",
+            "https://zestful-patience-production-a8c1.up.railway.app/my-tasks",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -117,7 +117,7 @@ const createTask = async () => {
         const token = localStorage.getItem("token");
 
         await axios.post(
-            "https://teamflow-production-f8a9.up.railway.app/tasks",
+            "https://zestful-patience-production-a8c1.up.railway.app/tasks",
             {
                 title: taskTitle,
                 description: taskDescription,
@@ -160,7 +160,7 @@ const createTask = async () => {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `https://teamflow-production-f8a9.up.railway.app/tasks/${taskId}`,
+                `https://zestful-patience-production-a8c1.up.railway.app/tasks/${taskId}`,
                 {
                     status
                 },
