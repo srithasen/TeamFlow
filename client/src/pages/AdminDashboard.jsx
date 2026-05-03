@@ -214,7 +214,7 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="min-h-screen bg-[#f5f7fb] p-6 overflow-x-hidden">
+        <div className="ml-64 min-h-screen bg-[#f5f7fb] p-6 overflow-x-hidden">
 
             {/* HEADER */}
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
