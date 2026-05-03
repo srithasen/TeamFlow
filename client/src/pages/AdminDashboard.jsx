@@ -425,7 +425,7 @@ Assign Task
                     </p>
 
                     <h2 className="text-5xl font-bold text-green-700">
-                        {completedtasks?.length || 0}
+                        {completedTasks?.length || 0}
                     </h2>
 
                 </div>
