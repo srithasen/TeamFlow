@@ -53,7 +53,7 @@ const Sidebar = ({ user }) => {
 
   return (
 
-    <div className="h-screen w-full flex flex-col justify-between bg-white px-6 py-8">
+    <div className="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between bg-white px-6 py-8 border-r border-gray-200">
 
       {/* TOP */}
       <div>
