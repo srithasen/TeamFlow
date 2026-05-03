@@ -20,12 +20,12 @@ exports.signup = async (req, res) => {
 
     // CHECK EXISTING USER
 
-    const [existingUser] = await db.query(
-      "SELECT * FROM users WHERE email = ?",
+    const existingUser = await db.query(
+      "SELECT * FROM users WHERE email = $1",
       [email]
     );
 
-    if(existingUser.length > 0){
+    if(existingUser.rows.length > 0){
 
       return res.status(400).json({
         message: "Email already exists"
@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
     // SAVE USER
 
     await db.query(
-      "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
+      "INSERT INTO users (name, email, password, role) VALUES ($1, $2, $3, $4)",
       [name, email, hashedPassword, role]
     );
 
@@ -76,12 +76,12 @@ exports.login = async (req, res) => {
 
     // FIND USER
 
-    const [users] = await db.query(
-      "SELECT * FROM users WHERE email = ?",
+    const users = await db.query(
+      "SELECT * FROM users WHERE email = $1",
       [email]
     );
 
-    if(users.length === 0){
+    if(users.rows.length === 0){
 
       return res.status(400).json({
         message: "Invalid email"
@@ -89,7 +89,7 @@ exports.login = async (req, res) => {
 
     }
 
-    const user = users[0];
+    const user = users.rows[0];
 
     // CHECK PASSWORD
 
