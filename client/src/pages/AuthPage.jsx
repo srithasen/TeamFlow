@@ -96,9 +96,8 @@ const handleSignup = async (e) => {
   catch(error){
 
     alert(
-      error.response?.data?.message ||
-      "Signup failed"
-    );
+  JSON.stringify(error.response?.data)
+);
 
     console.log(error);
 
