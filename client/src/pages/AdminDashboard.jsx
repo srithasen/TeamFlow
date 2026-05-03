@@ -55,7 +55,7 @@ const [deadline, setDeadline] =
                 }
             );
 
-            setProjects(response.data.projects);
+            setProjects(response.data.projects || []);
 
         } catch (error) {
 
@@ -80,7 +80,7 @@ const [deadline, setDeadline] =
                 }
             );
 
-            setTasks(response.data.tasks);
+            setTasks(response.data.tasks || []);
 
         } catch (error) {
 
@@ -106,7 +106,7 @@ const [deadline, setDeadline] =
             }
         );
 
-        setMembers(response.data.members);
+        setMembers(response.data.members || []);
 
     } catch (error) {
 
@@ -414,7 +414,7 @@ Assign Task
 
                     <h2 className="text-5xl font-bold">
                         {projects?.length || 0}
-                    </h2>
+                    </h2>(projects || []).slice(0, 5)
 
                 </div>
 
@@ -471,7 +471,7 @@ Assign Task
 
                         <div className="space-y-5">
 
-                            {projects.slice(0, 5).map((project) => (
+                            {(projects || []).slice(0, 5).map((project) => (
 
                                 <div
                                     key={project.id}
@@ -526,7 +526,7 @@ Assign Task
 
                         <div className="space-y-4">
 
-                            {tasks.slice(0, 6).map((task) => (
+                            {(tasks || []).slice(0, 6).map((task) => (
 
                                 <div
                                     key={task.id}
@@ -609,7 +609,7 @@ Assign Task
 
                         <div className="space-y-4">
 
-                            {projects.slice(0, 5).map((project) => (
+                            {(projects || []).slice(0, 5).map((project) => (
 
                                 <div
                                     key={project.id}

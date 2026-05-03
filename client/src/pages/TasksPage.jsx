@@ -42,7 +42,7 @@ const fetchProjects = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "teamflow-production-f8a9.up.railway.app/projects",
+            "https://teamflow-production-f8a9.up.railway.app/projects",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -50,7 +50,7 @@ const fetchProjects = async () => {
             }
         );
 
-        setProjects(response.data.projects);
+        setProjects(response.data.projects || []);
 
     } catch (error) {
 
@@ -67,7 +67,7 @@ const fetchUsers = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "teamflow-production-f8a9.up.railway.app/users",
+            "https://teamflow-production-f8a9.up.railway.app/users",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -92,7 +92,7 @@ const fetchTasks = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "teamflow-production-f8a9.up.railway.app/my-tasks",
+            "https://teamflow-production-f8a9.up.railway.app/my-tasks",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -117,7 +117,7 @@ const createTask = async () => {
         const token = localStorage.getItem("token");
 
         await axios.post(
-            "teamflow-production-f8a9.up.railway.app/tasks",
+            "https://teamflow-production-f8a9.up.railway.app/tasks",
             {
                 title: taskTitle,
                 description: taskDescription,
@@ -160,7 +160,7 @@ const createTask = async () => {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `teamflow-production-f8a9.up.railway.app/tasks/${taskId}`,
+                `https://teamflow-production-f8a9.up.railway.app/tasks/${taskId}`,
                 {
                     status
                 },
@@ -183,13 +183,13 @@ const createTask = async () => {
 
     // FILTER TASKS
     const pendingTasks =
-        tasks.filter(task => task.status === "pending");
+        (tasks || []).filter(task => task.status === "pending");
 
     const inProgressTasks =
-        tasks.filter(task => task.status === "in_progress");
+        (tasks || []).filter(task => task.status === "in_progress");
 
     const completedTasks =
-        tasks.filter(task => task.status === "completed");
+        (tasks || []).filter(task => task.status === "completed");
 
     const TaskCard = ({ task }) => (
 
@@ -453,7 +453,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {pendingTasks.map(task => (
+                        {pending(tasks || []).map(task => (
 
                             <TaskCard
                                 key={task.id}
@@ -489,7 +489,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {inProgressTasks.map(task => (
+                        {inProgress(tasks || []).map(task => (
 
                             <TaskCard
                                 key={task.id}
@@ -525,7 +525,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {completedTasks.map(task => (
+                        {completed(tasks || []).map(task => (
 
                             <TaskCard
                                 key={task.id}
