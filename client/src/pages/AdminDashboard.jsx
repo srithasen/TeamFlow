@@ -1,4 +1,3 @@
-```javascript
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -703,4 +702,3 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
-```
