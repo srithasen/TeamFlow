@@ -55,11 +55,6 @@ const [name, setName] = useState("");
       navigate("/admin-dashboard");
 
     }
-    else if(role === "manager"){
-
-      navigate("/manager-dashboard");
-
-    }
     else{
 
       navigate("/member-dashboard");
@@ -240,9 +235,6 @@ const handleSignup = async (e) => {
                   Member
                 </option>
 
-                <option value="manager">
-                  Manager
-                </option>
 
                 <option value="admin">
                   Admin
