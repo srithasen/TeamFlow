@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const authMiddleware = require("./middleware/authMiddleware");
 const authorizeRoles = require("./middleware/roleMiddleware");
 const memberRoutes = require("./routes/memberRoutes");
-const projectRoutes =
+const ProjectRoutes =
   require("./routes/ProjectRoutes");
 const teamRoutes =
   require("./routes/teamRoutes");
@@ -19,7 +19,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/projects", ProjectRoutes);;
+app.use("/projects", ProjectRoutes);
 app.use("/member", memberRoutes);
 app.use("/team", teamRoutes);
 
