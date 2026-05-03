@@ -214,14 +214,14 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="ml-64 min-h-screen bg-[#f5f7fb] p-6 overflow-x-hidden">
+        <div className="min-h-screen bg-[#f5f7fb] p-6">
 
             {/* HEADER */}
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
 
                 <div>
 
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                    <h1 className="text-5xl font-bold text-gray-800">
                         Dashboard
                     </h1>
 
@@ -415,8 +415,7 @@ Assign Task
 )}
 
             {/* STATS */}
-            <div className="grid grid-cols-1 2xl:grid-cols-3 gap-6">
-                
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
 
                 <div className="bg-green-700 text-white rounded-3xl p-6">
 
@@ -424,7 +423,7 @@ Assign Task
                         Total Projects
                     </p>
 
-                    <h2 className="text-3xl md:text-3xl font-bold">
+                    <h2 className="text-5xl font-bold">
                         {projects?.length || 0}
                     </h2>
 
@@ -436,7 +435,7 @@ Assign Task
                         Completed Tasks
                     </p>
 
-                    <h2 className="text-3xl md:text-3xl font-bold text-green-700">
+                    <h2 className="text-5xl font-bold text-green-700">
                         {completedTasks?.length || 0}
                     </h2>
 
@@ -448,7 +447,7 @@ Assign Task
                         Running Tasks
                     </p>
 
-                    <h2 className="text-3xl md:text-3xl font-bold text-blue-600">
+                    <h2 className="text-5xl font-bold text-blue-600">
                         {inProgressTasks?.length || 0}
                     </h2>
 
@@ -460,7 +459,7 @@ Assign Task
                         Pending Tasks
                     </p>
 
-                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-500">
+                    <h2 className="text-5xl font-bold text-yellow-500">
                         {pendingTasks?.length || 0}
                     </h2>
 
@@ -469,8 +468,7 @@ Assign Task
             </div>
 
             {/* MAIN GRID */}
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
                 {/* LEFT */}
                 <div className="xl:col-span-2 space-y-6">
@@ -488,10 +486,10 @@ Assign Task
 
                                 <div
                                     key={project.id}
-                                    className="bg-[#f5f7fb] rounded-2xl p-4 overflow-hidden"
+                                    className="bg-[#f5f7fb] rounded-2xl p-5"
                                 >
 
-                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                                    <div className="flex items-center justify-between mb-4">
 
                                         <div>
 
@@ -593,11 +591,11 @@ Assign Task
 
                         <div className="flex items-center justify-center">
 
-                            <div className="relative w-40 h-40 md:w-44 md:h-44 rounded-full border-[10px] border-green-700 flex items-center justify-center mx-auto">
+                            <div className="relative w-52 h-52 rounded-full border-[18px] border-green-700 flex items-center justify-center">
 
                                 <div className="text-center">
 
-                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+                                    <h2 className="text-5xl font-bold text-gray-800">
                                         {progress}%
                                     </h2>
 
@@ -653,7 +651,12 @@ Assign Task
 
                     </div>
 
-                    
+                    <button
+  onClick={() => setShowTaskModal(true)}
+  className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm mb-5"
+>
+  Assign Task
+</button>
 
                 </div>
 
