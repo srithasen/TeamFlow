@@ -531,9 +531,20 @@ Assign Task
                     {/* TASKS */}
                     <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                            Assigned Tasks
-                        </h2>
+                        <div className="flex items-center justify-between mb-6">
+
+<h2 className="text-2xl font-bold text-gray-800">
+    Assigned Tasks
+</h2>
+
+<button
+    onClick={() => setShowTaskModal(true)}
+    className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
+>
+    Assign Task
+</button>
+
+</div>
 
                         <div className="space-y-4">
 
