@@ -42,7 +42,7 @@ const fetchProjects = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "http://localhost:5000/projects",
+            "teamflow-production-f8a9.up.railway.app/projects",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -67,7 +67,7 @@ const fetchUsers = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "http://localhost:5000/users",
+            "teamflow-production-f8a9.up.railway.app/users",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -92,7 +92,7 @@ const fetchTasks = async () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "http://localhost:5000/my-tasks",
+            "teamflow-production-f8a9.up.railway.app/my-tasks",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -117,7 +117,7 @@ const createTask = async () => {
         const token = localStorage.getItem("token");
 
         await axios.post(
-            "http://localhost:5000/tasks",
+            "teamflow-production-f8a9.up.railway.app/tasks",
             {
                 title: taskTitle,
                 description: taskDescription,
@@ -160,7 +160,7 @@ const createTask = async () => {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `http://localhost:5000/tasks/${taskId}`,
+                `teamflow-production-f8a9.up.railway.app/tasks/${taskId}`,
                 {
                     status
                 },

@@ -47,7 +47,7 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5000/projects",
+                "teamflow-production-f8a9.up.railway.app/projects",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -72,7 +72,7 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5000/tasks",
+                "teamflow-production-f8a9.up.railway.app/tasks",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -98,7 +98,7 @@ const [deadline, setDeadline] =
           localStorage.getItem("token");
 
         const response = await axios.get(
-            "http://localhost:5000/team",
+            "teamflow-production-f8a9.up.railway.app/team",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -125,7 +125,7 @@ const [deadline, setDeadline] =
 
             await axios.post(
 
-                "http://localhost:5000/projects",
+                "teamflow-production-f8a9.up.railway.app/projects",
 
                 {
                     title,
@@ -166,7 +166,7 @@ const [deadline, setDeadline] =
 
         await axios.post(
 
-            "http://localhost:5000/tasks",
+            "teamflow-production-f8a9.up.railway.app/tasks",
 
             {
                 project_id: selectedProject,

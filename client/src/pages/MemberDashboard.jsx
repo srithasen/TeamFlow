@@ -38,7 +38,7 @@ const MemberDashboard = () => {
     try {
 
       const res = await axios.get(
-        "http://localhost:5000/member/dashboard",
+        "teamflow-production-f8a9.up.railway.app/member/dashboard",
         {
           headers: {
             Authorization: `Bearer ${token}`,
