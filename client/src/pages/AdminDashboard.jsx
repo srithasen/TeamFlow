@@ -314,9 +314,20 @@ const [deadline, setDeadline] =
 
 <div className="bg-white w-full max-w-lg rounded-3xl p-8">
 
-<h2 className="text-3xl font-bold text-gray-800 mb-6">
+<div className="flex justify-between items-center mb-6">
+
+<h2 className="text-3xl font-bold text-gray-800">
 Assign Task
 </h2>
+
+<button
+    onClick={() => setShowTaskModal(false)}
+    className="text-2xl text-black"
+>
+    ×
+</button>
+
+</div>
 
 <div className="space-y-4">
 
