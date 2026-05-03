@@ -8,7 +8,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 const authorizeRoles = require("./middleware/roleMiddleware");
 const memberRoutes = require("./routes/memberRoutes");
 const projectRoutes =
-  require("./routes/projectRoutes");
+  require("./routes/ProjectRoutes");
 const teamRoutes =
   require("./routes/teamRoutes");
 
