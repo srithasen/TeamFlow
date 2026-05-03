@@ -19,7 +19,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/projects", projectRoutes);;
+app.use("/projects", ProjectRoutes);;
 app.use("/member", memberRoutes);
 app.use("/team", teamRoutes);
 
