@@ -1,19 +1,11 @@
-const mysql = require("mysql2");
+const { Pool } = require("pg");
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Srithasen@123",
-    database: "teamflow"
+const pool = new Pool({
+    connectionString:
+        "postgresql://postgres:[Srithasen@123]@db.aovjfdygivecjlubhvmh.supabase.co:5432/postgres",
+    ssl: {
+        rejectUnauthorized: false,
+    },
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.log("Database connection failed");
-        console.log(err);
-    } else {
-        console.log("MySQL Connected");
-    }
-});
-
-module.exports = connection;
+module.exports = pool;
