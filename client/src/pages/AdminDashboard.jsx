@@ -14,31 +14,31 @@ function AdminDashboard() {
 
     const [members, setMembers] = useState([]);
 
-    const [showTaskModal, setShowTaskModal] =
-        useState(false);
+const [showTaskModal, setShowTaskModal] =
+  useState(false);
 
-    const [taskTitle, setTaskTitle] =
-        useState("");
+const [taskTitle, setTaskTitle] =
+  useState("");
 
-    const [taskDescription, setTaskDescription] =
-        useState("");
+const [taskDescription, setTaskDescription] =
+  useState("");
 
-    const [assignedTo, setAssignedTo] =
-        useState("");
+const [assignedTo, setAssignedTo] =
+  useState("");
 
-    const [selectedProject, setSelectedProject] =
-        useState("");
+const [selectedProject, setSelectedProject] =
+  useState("");
 
-    const [deadline, setDeadline] =
-        useState("");
+const [deadline, setDeadline] =
+  useState("");
 
     useEffect(() => {
 
-        fetchProjects();
-        fetchTasks();
-        fetchMembers();
+    fetchProjects();
+    fetchTasks();
+    fetchMembers();
 
-    }, []);
+}, []);
 
     const fetchProjects = async () => {
 
@@ -47,8 +47,8 @@ function AdminDashboard() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "https://zestful-patience-production-a8c1.up.railway.app/projects",
-                {
+   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -72,8 +72,8 @@ function AdminDashboard() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "https://zestful-patience-production-a8c1.up.railway.app/tasks",
-                {
+   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -92,29 +92,29 @@ function AdminDashboard() {
 
     const fetchMembers = async () => {
 
-        try {
+    try {
 
-            const token =
-                localStorage.getItem("token");
+        const token =
+          localStorage.getItem("token");
 
-            const response = await axios.get(
-                "https://zestful-patience-production-a8c1.up.railway.app/team",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+        const response = await axios.get(
+            "https://zestful-patience-production-a8c1.up.railway.app/team",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            );
+            }
+        );
 
-            setMembers(response.data.members || []);
+        setMembers(response.data.members || []);
 
-        } catch (error) {
+    } catch (error) {
 
-            console.log(error);
+        console.log(error);
 
-        }
+    }
 
-    };
+};
 
     const createProject = async () => {
 
@@ -159,42 +159,42 @@ function AdminDashboard() {
 
     const createTask = async () => {
 
-        try {
+    try {
 
-            const token =
-                localStorage.getItem("token");
+        const token =
+          localStorage.getItem("token");
 
-            await axios.post(
+        await axios.post(
 
-                "https://zestful-patience-production-a8c1.up.railway.app/tasks",
+            "https://zestful-patience-production-a8c1.up.railway.app/tasks",
 
-                {
-                    project_id: selectedProject,
-                    assigned_to: assignedTo,
-                    title: taskTitle,
-                    description: taskDescription,
-                    deadline
-                },
+            {
+                project_id: selectedProject,
+                assigned_to: assignedTo,
+                title: taskTitle,
+                description: taskDescription,
+                deadline
+            },
 
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
+            }
 
-            );
+        );
 
-            setShowTaskModal(false);
+        setShowTaskModal(false);
 
-            fetchTasks();
+        fetchTasks();
 
-        } catch (error) {
+    } catch (error) {
 
-            console.log(error);
+        console.log(error);
 
-        }
+    }
 
-    };
+};
 
     const completedTasks =
         (tasks || []).filter(task => task.status === "completed");
@@ -206,233 +206,404 @@ function AdminDashboard() {
         (tasks || []).filter(task => task.status === "in_progress");
 
     const progress =
-        tasks?.length > 0
-            ? Math.round(
-                ((completedTasks?.length || 0) / tasks.length) * 100
-            )
-            : 0;
+    tasks?.length > 0
+        ? Math.round(
+            ((completedTasks?.length || 0) / tasks.length) * 100
+        )
+        : 0;
 
     return (
 
-        <div className="flex bg-[#f5f7fb]">
+        <div className="ml-64 min-h-screen bg-[#f5f7fb] p-6 overflow-x-hidden">
 
-            {/* CONTENT */}
-            <div className="flex-1 ml-64 min-h-screen p-6 overflow-x-hidden">
+            {/* HEADER */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
 
-                {/* HEADER */}
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+                <div>
 
-                    <div>
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                        Dashboard
+                    </h1>
 
-                        <h1 className="text-4xl font-bold text-gray-800">
-                            Dashboard
-                        </h1>
+                    <p className="text-gray-500 mt-2">
+                        Manage projects, tasks and team productivity.
+                    </p>
 
-                        <p className="text-gray-500 mt-2">
-                            Manage projects, tasks and team productivity.
-                        </p>
+                </div>
 
-                    </div>
+                <div className="flex gap-4">
 
                     <button
                         onClick={() => setShowModal(true)}
-                        className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-2xl font-medium"
+                        className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-2xl font-medium transition-all"
                     >
                         + Add Project
                     </button>
 
                 </div>
 
-                {/* STATS */}
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+            </div>
 
-                    <div className="bg-green-700 text-white rounded-3xl p-6">
+            {/* MODAL */}
+            {showModal && (
 
-                        <p className="text-sm opacity-80 mb-3">
-                            Total Projects
-                        </p>
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
 
-                        <h2 className="text-3xl font-bold">
-                            {projects?.length || 0}
-                        </h2>
+                    <div className="bg-white w-full max-w-lg rounded-3xl p-8">
 
-                    </div>
+                        <div className="flex justify-between items-center mb-6">
 
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                            <h2 className="text-3xl font-bold text-gray-800">
+                                Create Project
+                            </h2>
 
-                        <p className="text-sm text-gray-500 mb-3">
-                            Completed Tasks
-                        </p>
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="text-2xl text-black"
+                            >
+                                ×
+                            </button>
 
-                        <h2 className="text-3xl font-bold text-green-700">
-                            {completedTasks?.length || 0}
-                        </h2>
+                        </div>
 
-                    </div>
+                        <div className="space-y-4">
 
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                            <input
+                                type="text"
+                                placeholder="Project Title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black"
+                            />
 
-                        <p className="text-sm text-gray-500 mb-3">
-                            Running Tasks
-                        </p>
+                            <textarea
+                                placeholder="Project Description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                className="w-full h-36 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black resize-none"
+                            />
 
-                        <h2 className="text-3xl font-bold text-blue-600">
-                            {inProgressTasks?.length || 0}
-                        </h2>
+                            <select
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black"
+                            >
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                            </select>
 
-                    </div>
+                            <button
+                                onClick={createProject}
+                                className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
+                            >
+                                Create Project
+                            </button>
 
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
-
-                        <p className="text-sm text-gray-500 mb-3">
-                            Pending Tasks
-                        </p>
-
-                        <h2 className="text-3xl font-bold text-yellow-500">
-                            {pendingTasks?.length || 0}
-                        </h2>
+                        </div>
 
                     </div>
 
                 </div>
 
-                {/* MAIN GRID */}
-                <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            )}
 
-                    {/* LEFT */}
-                    <div className="xl:col-span-2 space-y-6">
+            {showTaskModal && (
 
-                        {/* ACTIVE PROJECTS */}
-                        <div className="bg-white rounded-3xl border border-gray-200 p-6">
+<div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
 
-                            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                                Active Projects
-                            </h2>
+<div className="bg-white w-full max-w-lg rounded-3xl p-8">
 
-                            <div className="space-y-5">
+<div className="flex justify-between items-center mb-6">
 
-                                {(projects || []).slice(0, 5).map((project) => (
+<h2 className="text-3xl font-bold text-gray-800">
+Assign Task
+</h2>
 
-                                    <div
-                                        key={project.id}
-                                        className="bg-[#f5f7fb] rounded-2xl p-4"
-                                    >
+<button
+    onClick={() => setShowTaskModal(false)}
+    className="text-2xl text-black"
+>
+    ×
+</button>
 
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+</div>
 
-                                            <div>
+<div className="space-y-4">
 
-                                                <h3 className="font-bold text-lg text-gray-800">
-                                                    {project.title}
-                                                </h3>
+<select
+value={selectedProject}
+onChange={(e) => setSelectedProject(e.target.value)}
+className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+>
 
-                                                <p className="text-gray-500 text-sm mt-1">
-                                                    {project.description}
-                                                </p>
+<option value="">
+Select Project
+</option>
 
-                                            </div>
+{projects.map((project) => (
 
-                                            <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm">
-                                                {project.priority}
-                                            </span>
+<option
+key={project.id}
+value={project.id}
+>
+{project.title}
+</option>
 
-                                        </div>
+))}
 
-                                    </div>
+</select>
 
-                                ))}
+<select
+value={assignedTo}
+onChange={(e) => setAssignedTo(e.target.value)}
+className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+>
 
-                            </div>
+<option value="">
+Assign Member
+</option>
 
-                        </div>
+{members.map((member) => (
 
-                        {/* TASKS */}
-                        <div className="bg-white rounded-3xl border border-gray-200 p-6">
+<option
+key={member.id}
+value={member.id}
+>
+{member.name}
+</option>
 
-                            <div className="flex items-center justify-between mb-6">
+))}
 
-                                <h2 className="text-2xl font-bold text-gray-800">
-                                    Assigned Tasks
-                                </h2>
+</select>
 
-                                <button
-                                    onClick={() => setShowTaskModal(true)}
-                                    className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
+<input
+type="text"
+placeholder="Task Title"
+value={taskTitle}
+onChange={(e) => setTaskTitle(e.target.value)}
+className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+/>
+
+<textarea
+placeholder="Task Description"
+value={taskDescription}
+onChange={(e) => setTaskDescription(e.target.value)}
+className="w-full h-32 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+/>
+
+<input
+type="date"
+value={deadline}
+onChange={(e) => setDeadline(e.target.value)}
+className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+/>
+
+<button
+onClick={createTask}
+className="w-full bg-green-700 text-white py-4 rounded-2xl"
+>
+Assign Task
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+)}
+
+            {/* STATS */}
+            <div className="grid grid-cols-1 2xl:grid-cols-3 gap-6">
+                
+
+                <div className="bg-green-700 text-white rounded-3xl p-6">
+
+                    <p className="text-sm opacity-80 mb-3">
+                        Total Projects
+                    </p>
+
+                    <h2 className="text-3xl md:text-3xl font-bold">
+                        {projects?.length || 0}
+                    </h2>
+
+                </div>
+
+                <div className="bg-white rounded-3xl border border-gray-200 p-6">
+
+                    <p className="text-sm text-gray-500 mb-3">
+                        Completed Tasks
+                    </p>
+
+                    <h2 className="text-3xl md:text-3xl font-bold text-green-700">
+                        {completedTasks?.length || 0}
+                    </h2>
+
+                </div>
+
+                <div className="bg-white rounded-3xl border border-gray-200 p-6">
+
+                    <p className="text-sm text-gray-500 mb-3">
+                        Running Tasks
+                    </p>
+
+                    <h2 className="text-3xl md:text-3xl font-bold text-blue-600">
+                        {inProgressTasks?.length || 0}
+                    </h2>
+
+                </div>
+
+                <div className="bg-white rounded-3xl border border-gray-200 p-6">
+
+                    <p className="text-sm text-black-500 mb-3">
+                        Pending Tasks
+                    </p>
+
+                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-500">
+                        {pendingTasks?.length || 0}
+                    </h2>
+
+                </div>
+
+            </div>
+
+            {/* MAIN GRID */}
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                {/* LEFT */}
+                <div className="xl:col-span-2 space-y-6">
+
+                    {/* ACTIVE PROJECTS */}
+                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
+
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                            Active Projects
+                        </h2>
+
+                        <div className="space-y-5">
+
+                            {(projects || []).slice(0, 5).map((project) => (
+
+                                <div
+                                    key={project.id}
+                                    className="bg-[#f5f7fb] rounded-2xl p-4 overflow-hidden"
                                 >
-                                    Assign Task
-                                </button>
 
-                            </div>
-
-                            <div className="space-y-4">
-
-                                {(tasks || []).slice(0, 6).map((task) => (
-
-                                    <div
-                                        key={task.id}
-                                        className="flex items-center justify-between bg-[#f5f7fb] rounded-2xl p-4"
-                                    >
+                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
 
                                         <div>
 
-                                            <h3 className="font-semibold text-gray-800">
-                                                {task.title}
+                                            <h3 className="font-bold text-lg text-gray-800">
+                                                {project.title}
                                             </h3>
 
-                                            <p className="text-sm text-gray-500 mt-1">
-                                                {task.assigned_user}
+                                            <p className="text-gray-500 text-sm mt-1">
+                                                {project.description}
                                             </p>
 
                                         </div>
 
-                                        <span
-                                            className={`px-4 py-2 rounded-full text-sm
-                                            ${
-                                                task.status === "completed"
-                                                    ? "bg-green-100 text-green-700"
-                                                    : task.status === "pending"
-                                                        ? "bg-yellow-100 text-yellow-700"
-                                                        : "bg-blue-100 text-blue-700"
-                                            }`}
-                                        >
-                                            {task.status}
+                                        <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm">
+                                            {project.priority}
                                         </span>
 
                                     </div>
 
-                                ))}
+                                    <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
 
-                            </div>
+                                        <div
+                                            className="h-full bg-green-700 rounded-full"
+                                            style={{
+                                                width: `${project.progress}%`
+                                            }}
+                                        />
+
+                                    </div>
+
+                                </div>
+
+                            ))}
 
                         </div>
 
                     </div>
 
-                    {/* RIGHT */}
-                    <div className="space-y-6">
+                    {/* TASKS */}
+                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-                        {/* WORKSPACE PROGRESS */}
-                        <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                            Assigned Tasks
+                        </h2>
 
-                            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                                Workspace Progress
-                            </h2>
+                        <div className="space-y-4">
 
-                            <div className="flex items-center justify-center">
+                            {(tasks || []).slice(0, 6).map((task) => (
 
-                                <div className="relative w-40 h-40 rounded-full border-[10px] border-green-700 flex items-center justify-center">
+                                <div
+                                    key={task.id}
+                                    className="flex items-center justify-between bg-[#f5f7fb] rounded-2xl p-4"
+                                >
 
-                                    <div className="text-center">
+                                    <div>
 
-                                        <h2 className="text-3xl font-bold text-gray-800">
-                                            {progress}%
-                                        </h2>
+                                        <h3 className="font-semibold text-gray-800">
+                                            {task.title}
+                                        </h3>
 
-                                        <p className="text-gray-500 mt-2">
-                                            Completed
+                                        <p className="text-sm text-gray-500 mt-1">
+                                            {task.assigned_user}
                                         </p>
 
                                     </div>
+
+                                    <span
+                                        className={`px-4 py-2 rounded-full text-sm
+                                        ${
+                                            task.status === "completed"
+                                            ? "bg-green-100 text-green-700"
+                                            : task.status === "pending"
+                                            ? "bg-yellow-100 text-yellow-700"
+                                            : "bg-blue-100 text-blue-700"
+                                        }`}
+                                    >
+                                        {task.status}
+                                    </span>
+
+                                </div>
+
+                            ))}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {/* RIGHT */}
+                <div className="space-y-6">
+
+                    {/* WORKSPACE PROGRESS */}
+                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
+
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                            Workspace Progress
+                        </h2>
+
+                        <div className="flex items-center justify-center">
+
+                            <div className="relative w-40 h-40 md:w-44 md:h-44 rounded-full border-[10px] border-green-700 flex items-center justify-center mx-auto">
+
+                                <div className="text-center">
+
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+                                        {progress}%
+                                    </h2>
+
+                                    <p className="text-gray-500 mt-2">
+                                        Completed
+                                    </p>
 
                                 </div>
 
@@ -440,47 +611,49 @@ function AdminDashboard() {
 
                         </div>
 
-                        {/* RECENT PROJECTS */}
-                        <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                    </div>
 
-                            <h2 className="text-2xl font-bold text-gray-800 mb-5">
-                                Recent Projects
-                            </h2>
+                    {/* RECENT PROJECTS */}
+                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-                            <div className="space-y-4">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-5">
+                            Recent Projects
+                        </h2>
 
-                                {(projects || []).slice(0, 5).map((project) => (
+                        <div className="space-y-4">
 
-                                    <div
-                                        key={project.id}
-                                        className="flex items-center justify-between"
-                                    >
+                            {(projects || []).slice(0, 5).map((project) => (
 
-                                        <div>
+                                <div
+                                    key={project.id}
+                                    className="flex items-center justify-between"
+                                >
 
-                                            <h3 className="font-semibold text-gray-800">
-                                                {project.title}
-                                            </h3>
+                                    <div>
 
-                                            <p className="text-sm text-gray-500">
-                                                Active
-                                            </p>
+                                        <h3 className="font-semibold text-gray-800">
+                                            {project.title}
+                                        </h3>
 
-                                        </div>
-
-                                        <span className="text-sm text-gray-500">
-                                            {project.progress || 0}%
-                                        </span>
+                                        <p className="text-sm text-gray-500">
+                                            {project.status}
+                                        </p>
 
                                     </div>
 
-                                ))}
+                                    <span className="text-sm text-gray-500">
+                                        {project.progress}%
+                                    </span>
 
-                            </div>
+                                </div>
+
+                            ))}
 
                         </div>
 
                     </div>
+
+                    
 
                 </div>
 
