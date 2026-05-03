@@ -425,7 +425,7 @@ Assign Task
 
                     <h2 className="text-5xl font-bold">
                         {projects?.length || 0}
-                    </h2>(projects || []).slice(0, 5)
+                    </h2>
 
                 </div>
 
