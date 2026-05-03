@@ -52,6 +52,7 @@ app.post("/signup", async (req, res) => {
             INSERT INTO users (name, email, password, role)
             VALUES (?, ?, ?, ?)
         `;
+        console.log("SIGNUP BODY:", req.body);
 
         db.query(
             sql,
