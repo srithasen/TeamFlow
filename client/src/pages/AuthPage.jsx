@@ -31,7 +31,7 @@ const [name, setName] = useState("");
   try {
 
     const res = await axios.post(
-      "https://teamflow-production-f8a9.up.railway.app/login",
+      "https://zestful-patience-production-a8c1.up.railway.app/login",
       {
         email,
         password
@@ -79,7 +79,7 @@ const handleSignup = async (e) => {
   try {
 
     await axios.post(
-      "https://teamflow-production-f8a9.up.railway.app/signup",
+      "https://zestful-patience-production-a8c1.up.railway.app/signup",
       {
         name,
         email,

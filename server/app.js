@@ -52,7 +52,6 @@ app.post("/signup", async (req, res) => {
             INSERT INTO users (name, email, password, role)
             VALUES (?, ?, ?, ?)
         `;
-        console.log("SIGNUP BODY:", req.body);
 
         db.query(
             sql,
@@ -61,15 +60,19 @@ app.post("/signup", async (req, res) => {
 
                 if (err) {
 
-    console.log("SIGNUP ERROR:");
-    console.log(err);
+                    console.log(err);
 
-    return res.status(500).json({
-        error: err.message,
-        code: err.code
-    });
+                    // DUPLICATE EMAIL ERROR
+                    if (err.code === "ER_DUP_ENTRY") {
+                        return res.status(400).json({
+                            message: "Email already exists"
+                        });
+                    }
 
-}
+                    return res.status(500).json({
+                        message: "Database error"
+                    });
+                }
 
                 res.status(201).json({
                     message: "User registered successfully"
