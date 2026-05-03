@@ -1,3 +1,4 @@
+```javascript
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -14,31 +15,31 @@ function AdminDashboard() {
 
     const [members, setMembers] = useState([]);
 
-const [showTaskModal, setShowTaskModal] =
-  useState(false);
+    const [showTaskModal, setShowTaskModal] =
+        useState(false);
 
-const [taskTitle, setTaskTitle] =
-  useState("");
+    const [taskTitle, setTaskTitle] =
+        useState("");
 
-const [taskDescription, setTaskDescription] =
-  useState("");
+    const [taskDescription, setTaskDescription] =
+        useState("");
 
-const [assignedTo, setAssignedTo] =
-  useState("");
+    const [assignedTo, setAssignedTo] =
+        useState("");
 
-const [selectedProject, setSelectedProject] =
-  useState("");
+    const [selectedProject, setSelectedProject] =
+        useState("");
 
-const [deadline, setDeadline] =
-  useState("");
+    const [deadline, setDeadline] =
+        useState("");
 
     useEffect(() => {
 
-    fetchProjects();
-    fetchTasks();
-    fetchMembers();
+        fetchProjects();
+        fetchTasks();
+        fetchMembers();
 
-}, []);
+    }, []);
 
     const fetchProjects = async () => {
 
@@ -47,8 +48,8 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-   "https://zestful-patience-production-a8c1.up.railway.app/projects",
-   {
+                "https://zestful-patience-production-a8c1.up.railway.app/projects",
+                {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -61,6 +62,8 @@ const [deadline, setDeadline] =
 
             console.log(error);
 
+            setProjects([]);
+
         }
 
     };
@@ -72,8 +75,8 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-   "https://zestful-patience-production-a8c1.up.railway.app/projects",
-   {
+                "https://zestful-patience-production-a8c1.up.railway.app/my-tasks",
+                {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -86,35 +89,39 @@ const [deadline, setDeadline] =
 
             console.log(error);
 
+            setTasks([]);
+
         }
 
     };
 
     const fetchMembers = async () => {
 
-    try {
+        try {
 
-        const token =
-          localStorage.getItem("token");
+            const token =
+                localStorage.getItem("token");
 
-        const response = await axios.get(
-            "https://zestful-patience-production-a8c1.up.railway.app/team",
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
+            const response = await axios.get(
+                "https://zestful-patience-production-a8c1.up.railway.app/team",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
-        setMembers(response.data.members || []);
+            setMembers(response.data.members || []);
 
-    } catch (error) {
+        } catch (error) {
 
-        console.log(error);
+            console.log(error);
 
-    }
+            setMembers([]);
 
-};
+        }
+
+    };
 
     const createProject = async () => {
 
@@ -159,58 +166,72 @@ const [deadline, setDeadline] =
 
     const createTask = async () => {
 
-    try {
+        try {
 
-        const token =
-          localStorage.getItem("token");
+            const token =
+                localStorage.getItem("token");
 
-        await axios.post(
+            await axios.post(
 
-            "https://zestful-patience-production-a8c1.up.railway.app/tasks",
+                "https://zestful-patience-production-a8c1.up.railway.app/tasks",
 
-            {
-                project_id: selectedProject,
-                assigned_to: assignedTo,
-                title: taskTitle,
-                description: taskDescription,
-                deadline
-            },
+                {
+                    project_id: selectedProject,
+                    assigned_to: assignedTo,
+                    title: taskTitle,
+                    description: taskDescription,
+                    deadline
+                },
 
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
 
-        );
+            );
 
-        setShowTaskModal(false);
+            setShowTaskModal(false);
 
-        fetchTasks();
+            setTaskTitle("");
+            setTaskDescription("");
+            setAssignedTo("");
+            setSelectedProject("");
+            setDeadline("");
 
-    } catch (error) {
+            fetchTasks();
 
-        console.log(error);
+        } catch (error) {
 
-    }
+            console.log(error);
 
-};
+        }
+
+    };
 
     const completedTasks =
-        (tasks || []).filter(task => task.status === "completed");
+        (tasks || []).filter(
+            task => task.status === "completed"
+        );
 
     const pendingTasks =
-        (tasks || []).filter(task => task.status === "pending");
+        (tasks || []).filter(
+            task => task.status === "pending"
+        );
 
     const inProgressTasks =
-        (tasks || []).filter(task => task.status === "in_progress");
+        (tasks || []).filter(
+            task => task.status === "in_progress"
+        );
 
     const progress =
-    tasks?.length > 0
-        ? Math.round(
-            ((completedTasks?.length || 0) / tasks.length) * 100
-        )
-        : 0;
+        tasks?.length > 0
+            ? Math.round(
+                (
+                    (completedTasks.length / tasks.length) * 100
+                )
+            )
+            : 0;
 
     return (
 
@@ -244,7 +265,7 @@ const [deadline, setDeadline] =
 
             </div>
 
-            {/* MODAL */}
+            {/* CREATE PROJECT MODAL */}
             {showModal && (
 
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -308,111 +329,112 @@ const [deadline, setDeadline] =
 
             )}
 
+            {/* ASSIGN TASK MODAL */}
             {showTaskModal && (
 
-<div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
 
-<div className="bg-white w-full max-w-lg rounded-3xl p-8">
+                    <div className="bg-white w-full max-w-lg rounded-3xl p-8">
 
-<div className="flex justify-between items-center mb-6">
+                        <div className="flex justify-between items-center mb-6">
 
-<h2 className="text-3xl font-bold text-gray-800">
-Assign Task
-</h2>
+                            <h2 className="text-3xl font-bold text-gray-800">
+                                Assign Task
+                            </h2>
 
-<button
-    onClick={() => setShowTaskModal(false)}
-    className="text-2xl text-black"
->
-    ×
-</button>
+                            <button
+                                onClick={() => setShowTaskModal(false)}
+                                className="text-2xl text-black"
+                            >
+                                ×
+                            </button>
 
-</div>
+                        </div>
 
-<div className="space-y-4">
+                        <div className="space-y-4">
 
-<select
-value={selectedProject}
-onChange={(e) => setSelectedProject(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
->
+                            <select
+                                value={selectedProject}
+                                onChange={(e) => setSelectedProject(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+                            >
 
-<option value="">
-Select Project
-</option>
+                                <option value="">
+                                    Select Project
+                                </option>
 
-{projects.map((project) => (
+                                {(projects || []).map((project) => (
 
-<option
-key={project.id}
-value={project.id}
->
-{project.title}
-</option>
+                                    <option
+                                        key={project.id}
+                                        value={project.id}
+                                    >
+                                        {project.title}
+                                    </option>
 
-))}
+                                ))}
 
-</select>
+                            </select>
 
-<select
-value={assignedTo}
-onChange={(e) => setAssignedTo(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
->
+                            <select
+                                value={assignedTo}
+                                onChange={(e) => setAssignedTo(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+                            >
 
-<option value="">
-Assign Member
-</option>
+                                <option value="">
+                                    Assign Member
+                                </option>
 
-{members.map((member) => (
+                                {(members || []).map((member) => (
 
-<option
-key={member.id}
-value={member.id}
->
-{member.name}
-</option>
+                                    <option
+                                        key={member.id}
+                                        value={member.id}
+                                    >
+                                        {member.name}
+                                    </option>
 
-))}
+                                ))}
 
-</select>
+                            </select>
 
-<input
-type="text"
-placeholder="Task Title"
-value={taskTitle}
-onChange={(e) => setTaskTitle(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
+                            <input
+                                type="text"
+                                placeholder="Task Title"
+                                value={taskTitle}
+                                onChange={(e) => setTaskTitle(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+                            />
 
-<textarea
-placeholder="Task Description"
-value={taskDescription}
-onChange={(e) => setTaskDescription(e.target.value)}
-className="w-full h-32 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
+                            <textarea
+                                placeholder="Task Description"
+                                value={taskDescription}
+                                onChange={(e) => setTaskDescription(e.target.value)}
+                                className="w-full h-32 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+                            />
 
-<input
-type="date"
-value={deadline}
-onChange={(e) => setDeadline(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
+                            <input
+                                type="date"
+                                value={deadline}
+                                onChange={(e) => setDeadline(e.target.value)}
+                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
+                            />
 
-<button
-onClick={createTask}
-className="w-full bg-green-700 text-white py-4 rounded-2xl"
->
-Assign Task
-</button>
+                            <button
+                                onClick={createTask}
+                                className="w-full bg-green-700 text-white py-4 rounded-2xl"
+                            >
+                                Assign Task
+                            </button>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-)}
+            )}
 
             {/* STATS */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
@@ -514,7 +536,7 @@ Assign Task
                                         <div
                                             className="h-full bg-green-700 rounded-full"
                                             style={{
-                                                width: `${project.progress}%`
+                                                width: `${project.progress || 0}%`
                                             }}
                                         />
 
@@ -533,18 +555,18 @@ Assign Task
 
                         <div className="flex items-center justify-between mb-6">
 
-<h2 className="text-2xl font-bold text-gray-800">
-    Assigned Tasks
-</h2>
+                            <h2 className="text-2xl font-bold text-gray-800">
+                                Assigned Tasks
+                            </h2>
 
-<button
-    onClick={() => setShowTaskModal(true)}
-    className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
->
-    Assign Task
-</button>
+                            <button
+                                onClick={() => setShowTaskModal(true)}
+                                className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
+                            >
+                                Assign Task
+                            </button>
 
-</div>
+                        </div>
 
                         <div className="space-y-4">
 
@@ -562,7 +584,7 @@ Assign Task
                                         </h3>
 
                                         <p className="text-sm text-gray-500 mt-1">
-                                            {task.assigned_user}
+                                            {task.assigned_user || "No User"}
                                         </p>
 
                                     </div>
@@ -583,6 +605,14 @@ Assign Task
                                 </div>
 
                             ))}
+
+                            {tasks.length === 0 && (
+
+                                <div className="text-center text-gray-500 py-8">
+                                    No tasks available
+                                </div>
+
+                            )}
 
                         </div>
 
@@ -651,7 +681,7 @@ Assign Task
                                     </div>
 
                                     <span className="text-sm text-gray-500">
-                                        {project.progress}%
+                                        {project.progress || 0}%
                                     </span>
 
                                 </div>
@@ -661,13 +691,6 @@ Assign Task
                         </div>
 
                     </div>
-
-                    <button
-  onClick={() => setShowTaskModal(true)}
-  className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm mb-5"
->
-  Assign Task
-</button>
 
                 </div>
 
@@ -680,3 +703,4 @@ Assign Task
 }
 
 export default AdminDashboard;
+```
