@@ -453,7 +453,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {pending(tasks || []).map(task => (
+                        {pendingTasks.map(task => (
 
                             <TaskCard
                                 key={task.id}
@@ -489,7 +489,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {inProgress(tasks || []).map(task => (
+                        {inProgressTasks.map(task => (
 
                             <TaskCard
                                 key={task.id}
@@ -525,7 +525,7 @@ const createTask = async () => {
 
                         </div>
 
-                        {completed(tasks || []).map(task => (
+                        {completedTasks.map(task => (
 
                             <TaskCard
                                 key={task.id}
