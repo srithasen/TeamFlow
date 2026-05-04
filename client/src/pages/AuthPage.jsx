@@ -153,9 +153,7 @@ const handleSignup = async (e) => {
 
             <div className="forgot-link">
 
-              <a href="#">
-                Forgot Password?
-              </a>
+              
 
             </div>
 
