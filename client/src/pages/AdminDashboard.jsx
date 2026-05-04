@@ -216,7 +216,7 @@ const [deadline, setDeadline] =
 
         <div className="min-h-screen bg-[#eef2f7] p-6 flex justify-center">
 
-    <div className="w-full max-w-[1400px] bg-white rounded-[35px] shadow-xl p-8"></div>
+    
 
             {/* HEADER */}
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
@@ -470,10 +470,10 @@ Assign Task
             </div>
 
             {/* MAIN GRID */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
 
                 {/* LEFT */}
-                <div className="xl:col-span-2 space-y-6">
+                <div className="lg:col-span-2 space-y-6 min-w-0">
 
                     {/* ACTIVE PROJECTS */}
                     <div className="bg-white rounded-3xl border border-gray-200 p-6">
