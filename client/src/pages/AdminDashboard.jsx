@@ -550,72 +550,73 @@ function AdminDashboard() {
                     </div>
 
                     {/* TASKS */}
-<div className="bg-white rounded-3xl border border-gray-200 p-6">
+                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-    <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center justify-between mb-6">
 
-        <h2 className="text-2xl font-bold text-gray-800">
-            Assigned Tasks
-        </h2>
+                            <h2 className="text-2xl font-bold text-gray-800">
+                                Assigned Tasks
+                            </h2>
 
-        <button
-            onClick={() => setShowTaskModal(true)}
-            className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
-        >
-            Assign Task
-        </button>
+                            <button
+                                onClick={() => setShowTaskModal(true)}
+                                className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm"
+                            >
+                                Assign Task
+                            </button>
 
-    </div>
+                        </div>
 
-    <div className="space-y-4">
+                        <div className="space-y-4">
 
-        {(tasks || []).slice(0, 6).map((task) => (
+                            {(tasks || []).slice(0, 6).map((task) => (
 
-            <div
-                key={task.id}
-                className="flex items-center justify-between bg-[#f5f7fb] rounded-2xl p-4"
-            >
+                                <div
+                                    key={task.id}
+                                    className="flex items-center justify-between bg-[#f5f7fb] rounded-2xl p-4"
+                                >
 
-                <div>
+                                    <div>
 
-                    <h3 className="font-semibold text-gray-800">
-                        {task.title}
-                    </h3>
+                                        <h3 className="font-semibold text-gray-800">
+                                            {task.title}
+                                        </h3>
 
-                    <p className="text-sm text-gray-500 mt-1">
-                        {task.assigned_user || "No User"}
-                    </p>
+                                        <p className="text-sm text-gray-500 mt-1">
+                                            {task.assigned_user || "No User"}
+                                        </p>
 
-                </div>
+                                    </div>
 
-                <span
-                    className={`px-4 py-2 rounded-full text-sm
-                    ${
-                        task.status === "completed"
-                        ? "bg-green-100 text-green-700"
-                        : task.status === "pending"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-blue-100 text-blue-700"
-                    }`}
-                >
-                    {task.status}
-                </span>
+                                    <span
+                                        className={`px-4 py-2 rounded-full text-sm
+                                        ${
+                                            task.status === "completed"
+                                            ? "bg-green-100 text-green-700"
+                                            : task.status === "pending"
+                                            ? "bg-yellow-100 text-yellow-700"
+                                            : "bg-blue-100 text-blue-700"
+                                        }`}
+                                    >
+                                        {task.status}
+                                    </span>
 
-            </div>
+                                </div>
 
-        ))}
+                            ))}
 
-        {tasks.length === 0 && (
+                            {tasks.length === 0 && (
 
-            <div className="text-center text-gray-500 py-8">
-                No tasks available
-            </div>
+                                <div className="text-center text-gray-500 py-8">
+                                    No tasks available
+                                </div>
 
-        )}
+                            )}
 
-    </div>
+                        </div>
 
-</div>
+                    </div>
+
                 </div>
 
                 {/* RIGHT */}
