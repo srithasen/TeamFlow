@@ -47,7 +47,7 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-   "https://zestful-patience-production-a8c1.up.railway.app/my-tasks",
+   "https://zestful-patience-production-a8c1.up.railway.app/projects",
    {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -72,7 +72,7 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   "https://zestful-patience-production-a8c1.up.railway.app/my-tasks",
    {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -402,6 +402,12 @@ value={deadline}
 onChange={(e) => setDeadline(e.target.value)}
 className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
 />
+<button
+onClick={createTask}
+className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
+>
+Assign Task
+</button>
 
 
 </div>
