@@ -47,7 +47,7 @@ const [deadline, setDeadline] =
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-   "https://zestful-patience-production-a8c1.up.railway.app/projects",
+   "https://zestful-patience-production-a8c1.up.railway.app/my-tasks",
    {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -214,7 +214,9 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="min-h-screen bg-[#eef2f7] p-6 flex justify-center">
+        <div className="min-h-screen bg-[#eef2f7] p-6">
+
+        <div className="max-w-7xl mx-auto"></div>
 
     
 
@@ -401,12 +403,6 @@ onChange={(e) => setDeadline(e.target.value)}
 className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
 />
 
-<button
-onClick={createTask}
-className="w-full bg-green-700 text-white py-4 rounded-2xl"
->
-Assign Task
-</button>
 
 </div>
 
@@ -419,17 +415,17 @@ Assign Task
             {/* STATS */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
-                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
+                <div className="bg-green-700 text-white rounded-3xl p-6 min-h-[140px] flex flex-col justify-center">
 
-                    <p className="text-sm opacity-80 mb-3">
-                        Total Projects
-                    </p>
+    <p className="text-sm opacity-80 mb-3">
+        Total Projects
+    </p>
 
-                    <h2 className="text-5xl font-bold">
-                        {projects?.length || 0}
-                    </h2>
+    <h2 className="text-5xl font-bold">
+        {projects?.length || 0}
+    </h2>
 
-                </div>
+</div>
 
                 <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
