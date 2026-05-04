@@ -502,6 +502,176 @@ const [deadline, setDeadline] =
             </div>
 
         </div>
+        {/* CREATE PROJECT MODAL */}
+{showModal && (
+
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+        <div className="bg-white w-full max-w-lg rounded-3xl p-8">
+
+            <div className="flex justify-between items-center mb-6">
+
+                <h2 className="text-3xl font-bold text-gray-800">
+                    Create Project
+                </h2>
+
+                <button
+                    onClick={() => setShowModal(false)}
+                    className="text-2xl"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div className="space-y-4">
+
+                <input
+                    type="text"
+                    placeholder="Project Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none"
+                />
+
+                <textarea
+                    placeholder="Project Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="w-full h-36 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none resize-none"
+                />
+
+                <select
+                    value={priority}
+                    onChange={(e) => setPriority(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none"
+                >
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+
+                <button
+                    onClick={createProject}
+                    className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
+                >
+                    Create Project
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+)}
+
+{/* ASSIGN TASK MODAL */}
+{showTaskModal && (
+
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+        <div className="bg-white w-full max-w-lg rounded-3xl p-8">
+
+            <div className="flex justify-between items-center mb-6">
+
+                <h2 className="text-3xl font-bold text-gray-800">
+                    Assign Task
+                </h2>
+
+                <button
+                    onClick={() => setShowTaskModal(false)}
+                    className="text-2xl"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div className="space-y-4">
+
+                <select
+                    value={selectedProject}
+                    onChange={(e) => setSelectedProject(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200"
+                >
+
+                    <option value="">
+                        Select Project
+                    </option>
+
+                    {(projects || []).map((project) => (
+
+                        <option
+                            key={project.id}
+                            value={project.id}
+                        >
+                            {project.title}
+                        </option>
+
+                    ))}
+
+                </select>
+
+                <select
+                    value={assignedTo}
+                    onChange={(e) => setAssignedTo(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200"
+                >
+
+                    <option value="">
+                        Assign Member
+                    </option>
+
+                    {(members || []).map((member) => (
+
+                        <option
+                            key={member.id}
+                            value={member.id}
+                        >
+                            {member.name}
+                        </option>
+
+                    ))}
+
+                </select>
+
+                <input
+                    type="text"
+                    placeholder="Task Title"
+                    value={taskTitle}
+                    onChange={(e) => setTaskTitle(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200"
+                />
+
+                <textarea
+                    placeholder="Task Description"
+                    value={taskDescription}
+                    onChange={(e) => setTaskDescription(e.target.value)}
+                    className="w-full h-32 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200"
+                />
+
+                <input
+                    type="date"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                    className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200"
+                />
+
+                <button
+                    onClick={createTask}
+                    className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
+                >
+                    Assign Task
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+)}
 
     </div>
 
