@@ -214,9 +214,9 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="min-h-screen bg-[#eef2f7] p-6">
+        <div className="min-h-screen bg-[#eef2f7] pl-[260px] p-6">
 
-        <div className="max-w-7xl mx-auto"></div>
+        <div className="w-full"></div>
 
     
 
@@ -480,7 +480,7 @@ Assign Task
                     {/* ACTIVE PROJECTS */}
                     <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                        <h2 className="text-3xl font-bold text-black mb-6">
                             Active Projects
                         </h2>
 
@@ -490,7 +490,7 @@ Assign Task
 
                                 <div
                                     key={project.id}
-                                    className="bg-[#f5f7fb] rounded-2xl p-5"
+                                    className="bg-[#f5f7fb] rounded-2xl p-5 min-h-[140px]"
                                 >
 
                                     <div className="flex items-center justify-between mb-4">
