@@ -214,400 +214,208 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="min-h-screen bg-[#eef2f7] pl-[260px] p-6">
+    <div className="min-h-screen bg-[#eef2f7] flex">
 
-        <div className="w-full"></div>
+        {/* SIDEBAR SPACE */}
+        <div className="w-[250px]"></div>
 
-    
+        {/* MAIN CONTENT */}
+        <div className="flex-1 p-6">
 
-            {/* HEADER */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+            {/* DASHBOARD BOX */}
+            <div className="bg-white rounded-[35px] shadow-sm p-8 min-h-[95vh]">
 
-                <div>
+                {/* HEADER */}
+                <div className="flex items-center justify-between mb-8">
 
-                    <h1 className="text-5xl font-bold text-gray-800">
-                        Dashboard
-                    </h1>
+                    <div>
 
-                    <p className="text-gray-500 mt-2">
-                        Manage projects, tasks and team productivity.
-                    </p>
+                        <h1 className="text-5xl font-bold text-gray-800">
+                            Dashboard
+                        </h1>
 
-                </div>
+                        <p className="text-gray-500 mt-2 text-lg">
+                            Manage projects, tasks and team productivity.
+                        </p>
 
-                <div className="flex gap-4">
+                    </div>
 
                     <button
                         onClick={() => setShowModal(true)}
-                        className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-2xl font-medium transition-all"
+                        className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-2xl font-medium"
                     >
                         + Add Project
                     </button>
 
                 </div>
 
-            </div>
+                {/* STATS */}
+                <div className="grid grid-cols-4 gap-6 mb-8">
 
-            {/* MODAL */}
-            {showModal && (
+                    <div className="bg-green-700 text-white rounded-3xl p-6">
 
-                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                        <p className="text-sm opacity-80 mb-3">
+                            Total Projects
+                        </p>
 
-                    <div className="bg-white w-full max-w-lg rounded-3xl p-8">
+                        <h2 className="text-5xl font-bold">
+                            {projects.length}
+                        </h2>
 
-                        <div className="flex justify-between items-center mb-6">
+                    </div>
 
-                            <h2 className="text-3xl font-bold text-gray-800">
-                                Create Project
-                            </h2>
+                    <div className="bg-[#f5f7fb] rounded-3xl p-6">
 
-                            <button
-                                onClick={() => setShowModal(false)}
-                                className="text-2xl text-black"
-                            >
-                                ×
-                            </button>
+                        <p className="text-sm text-gray-500 mb-3">
+                            Completed Tasks
+                        </p>
 
-                        </div>
+                        <h2 className="text-5xl font-bold text-green-700">
+                            {completedTasks.length}
+                        </h2>
 
-                        <div className="space-y-4">
+                    </div>
 
-                            <input
-                                type="text"
-                                placeholder="Project Title"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black"
-                            />
+                    <div className="bg-[#f5f7fb] rounded-3xl p-6">
 
-                            <textarea
-                                placeholder="Project Description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="w-full h-36 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black resize-none"
-                            />
+                        <p className="text-sm text-gray-500 mb-3">
+                            Running Tasks
+                        </p>
 
-                            <select
-                                value={priority}
-                                onChange={(e) => setPriority(e.target.value)}
-                                className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 outline-none text-black"
-                            >
-                                <option>Low</option>
-                                <option>Medium</option>
-                                <option>High</option>
-                            </select>
+                        <h2 className="text-5xl font-bold text-blue-600">
+                            {inProgressTasks.length}
+                        </h2>
 
-                            <button
-                                onClick={createProject}
-                                className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
-                            >
-                                Create Project
-                            </button>
+                    </div>
 
-                        </div>
+                    <div className="bg-[#f5f7fb] rounded-3xl p-6">
+
+                        <p className="text-sm text-gray-500 mb-3">
+                            Pending Tasks
+                        </p>
+
+                        <h2 className="text-5xl font-bold text-yellow-500">
+                            {pendingTasks.length}
+                        </h2>
 
                     </div>
 
                 </div>
 
-            )}
+                {/* MAIN GRID */}
+                <div className="grid grid-cols-3 gap-6">
 
-            {showTaskModal && (
+                    {/* LEFT */}
+                    <div className="col-span-2 space-y-6">
 
-<div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                        {/* ACTIVE PROJECTS */}
+                        <div className="bg-[#f5f7fb] rounded-3xl p-6">
 
-<div className="bg-white w-full max-w-lg rounded-3xl p-8">
+                            <h2 className="text-3xl font-bold text-black mb-6">
+                                Active Projects
+                            </h2>
 
-<div className="flex justify-between items-center mb-6">
+                            <div className="space-y-5">
 
-<h2 className="text-3xl font-bold text-gray-800">
-Assign Task
-</h2>
+                                {(projects || []).map((project) => (
 
-<button
-    onClick={() => setShowTaskModal(false)}
-    className="text-2xl text-black"
->
-    ×
-</button>
+                                    <div
+                                        key={project.id}
+                                        className="bg-white rounded-2xl p-5"
+                                    >
 
-</div>
+                                        <div className="flex justify-between mb-4">
 
-<div className="space-y-4">
+                                            <div>
 
-<select
-value={selectedProject}
-onChange={(e) => setSelectedProject(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
->
+                                                <h3 className="font-bold text-lg text-gray-800">
+                                                    {project.title}
+                                                </h3>
 
-<option value="">
-Select Project
-</option>
+                                                <p className="text-gray-500 text-sm mt-1">
+                                                    {project.description}
+                                                </p>
 
-{projects.map((project) => (
+                                            </div>
 
-<option
-key={project.id}
-value={project.id}
->
-{project.title}
-</option>
+                                            <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm h-fit">
+                                                {project.priority}
+                                            </span>
 
-))}
+                                        </div>
 
-</select>
+                                        <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
 
-<select
-value={assignedTo}
-onChange={(e) => setAssignedTo(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
->
+                                            <div
+                                                className="h-full bg-green-700 rounded-full"
+                                                style={{
+                                                    width: `${project.progress || 0}%`
+                                                }}
+                                            />
 
-<option value="">
-Assign Member
-</option>
+                                        </div>
 
-{members.map((member) => (
+                                    </div>
 
-<option
-key={member.id}
-value={member.id}
->
-{member.name}
-</option>
+                                ))}
 
-))}
+                            </div>
 
-</select>
+                        </div>
 
-<input
-type="text"
-placeholder="Task Title"
-value={taskTitle}
-onChange={(e) => setTaskTitle(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
+                        {/* TASKS */}
+                        <div className="bg-[#f5f7fb] rounded-3xl p-6">
 
-<textarea
-placeholder="Task Description"
-value={taskDescription}
-onChange={(e) => setTaskDescription(e.target.value)}
-className="w-full h-32 p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
+                            <div className="flex justify-between items-center mb-6">
 
-<input
-type="date"
-value={deadline}
-onChange={(e) => setDeadline(e.target.value)}
-className="w-full p-4 rounded-2xl bg-[#f5f7fb] border border-gray-200 text-black"
-/>
-<button
-onClick={createTask}
-className="w-full bg-green-700 text-white py-4 rounded-2xl font-semibold"
->
-Assign Task
-</button>
+                                <h2 className="text-3xl font-bold text-black">
+                                    Assigned Tasks
+                                </h2>
 
-
-</div>
-
-</div>
-
-</div>
-
-)}
-
-            {/* STATS */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-
-                <div className="bg-green-700 text-white rounded-3xl p-6 min-h-[140px] flex flex-col justify-center">
-
-    <p className="text-sm opacity-80 mb-3">
-        Total Projects
-    </p>
-
-    <h2 className="text-5xl font-bold">
-        {projects?.length || 0}
-    </h2>
-
-</div>
-
-                <div className="bg-white rounded-3xl border border-gray-200 p-6">
-
-                    <p className="text-sm text-gray-500 mb-3">
-                        Completed Tasks
-                    </p>
-
-                    <h2 className="text-5xl font-bold text-green-700">
-                        {completedTasks?.length || 0}
-                    </h2>
-
-                </div>
-
-                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
-
-                    <p className="text-sm text-gray-500 mb-3">
-                        Running Tasks
-                    </p>
-
-                    <h2 className="text-5xl font-bold text-blue-600">
-                        {inProgressTasks?.length || 0}
-                    </h2>
-
-                </div>
-
-                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
-
-                    <p className="text-sm text-black-500 mb-3">
-                        Pending Tasks
-                    </p>
-
-                    <h2 className="text-5xl font-bold text-yellow-500">
-                        {pendingTasks?.length || 0}
-                    </h2>
-
-                </div>
-
-            </div>
-
-            {/* MAIN GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-
-                {/* LEFT */}
-                <div className="lg:col-span-2 space-y-6 min-w-0">
-
-                    {/* ACTIVE PROJECTS */}
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
-
-                        <h2 className="text-3xl font-bold text-black mb-6">
-                            Active Projects
-                        </h2>
-
-                        <div className="space-y-5">
-
-                            {(projects || []).slice(0, 5).map((project) => (
-
-                                <div
-                                    key={project.id}
-                                    className="bg-[#f5f7fb] rounded-2xl p-5 min-h-[140px]"
+                                <button
+                                    onClick={() => setShowTaskModal(true)}
+                                    className="bg-green-700 text-white px-5 py-3 rounded-2xl"
                                 >
+                                    Assign Task
+                                </button>
 
-                                    <div className="flex items-center justify-between mb-4">
+                            </div>
+
+                            <div className="space-y-4">
+
+                                {(tasks || []).map((task) => (
+
+                                    <div
+                                        key={task.id}
+                                        className="bg-white rounded-2xl p-5 flex items-center justify-between"
+                                    >
 
                                         <div>
 
-                                            <h3 className="font-bold text-lg text-gray-800">
-                                                {project.title}
+                                            <h3 className="font-semibold text-gray-800">
+                                                {task.assigned_user || "No User"}
                                             </h3>
 
                                             <p className="text-gray-500 text-sm mt-1">
-                                                {project.description}
+                                                {task.title}
                                             </p>
 
                                         </div>
 
-                                        <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm">
-                                            {project.priority}
+                                        <span
+                                            className={`px-4 py-2 rounded-full text-sm
+                                            ${
+                                                task.status === "completed"
+                                                    ? "bg-green-100 text-green-700"
+                                                    : "bg-yellow-100 text-yellow-700"
+                                            }`}
+                                        >
+                                            {task.status}
                                         </span>
 
                                     </div>
 
-                                    <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-
-                                        <div
-                                            className="h-full bg-green-700 rounded-full"
-                                            style={{
-                                                width: `${project.progress}%`
-                                            }}
-                                        />
-
-                                    </div>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                    </div>
-
-                    {/* TASKS */}
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
-
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                            Assigned Tasks
-                        </h2>
-
-                        <div className="space-y-4">
-
-                            {(tasks || []).slice(0, 6).map((task) => (
-
-                                <div
-                                    key={task.id}
-                                    className="flex items-center justify-between bg-[#f5f7fb] rounded-2xl p-4"
-                                >
-
-                                    <div>
-
-                                        <h3 className="font-semibold text-gray-800">
-                                            {task.title}
-                                        </h3>
-
-                                        <p className="text-sm text-gray-500 mt-1">
-                                            {task.assigned_user}
-                                        </p>
-
-                                    </div>
-
-                                    <span
-                                        className={`px-4 py-2 rounded-full text-sm
-                                        ${
-                                            task.status === "completed"
-                                            ? "bg-green-100 text-green-700"
-                                            : task.status === "pending"
-                                            ? "bg-yellow-100 text-yellow-700"
-                                            : "bg-blue-100 text-blue-700"
-                                        }`}
-                                    >
-                                        {task.status}
-                                    </span>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                {/* RIGHT */}
-                <div className="space-y-6">
-
-                    {/* WORKSPACE PROGRESS */}
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
-
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                            Workspace Progress
-                        </h2>
-
-                        <div className="flex items-center justify-center">
-
-                            <div className="relative w-52 h-52 rounded-full border-[18px] border-green-700 flex items-center justify-center">
-
-                                <div className="text-center">
-
-                                    <h2 className="text-5xl font-bold text-gray-800">
-                                        {progress}%
-                                    </h2>
-
-                                    <p className="text-gray-500 mt-2">
-                                        Completed
-                                    </p>
-
-                                </div>
+                                ))}
 
                             </div>
 
@@ -615,52 +423,79 @@ Assign Task
 
                     </div>
 
-                    {/* RECENT PROJECTS */}
-                    <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                    {/* RIGHT */}
+                    <div className="space-y-6">
 
-                        <h2 className="text-2xl font-bold text-gray-800 mb-5">
-                            Recent Projects
-                        </h2>
+                        {/* PROGRESS */}
+                        <div className="bg-[#f5f7fb] rounded-3xl p-6">
 
-                        <div className="space-y-4">
+                            <h2 className="text-3xl font-bold text-black mb-6">
+                                Workspace Progress
+                            </h2>
 
-                            {(projects || []).slice(0, 5).map((project) => (
+                            <div className="flex justify-center">
 
-                                <div
-                                    key={project.id}
-                                    className="flex items-center justify-between"
-                                >
+                                <div className="w-52 h-52 rounded-full border-[18px] border-green-700 flex items-center justify-center">
 
-                                    <div>
+                                    <div className="text-center">
 
-                                        <h3 className="font-semibold text-gray-800">
-                                            {project.title}
-                                        </h3>
+                                        <h2 className="text-5xl font-bold">
+                                            {progress}%
+                                        </h2>
 
-                                        <p className="text-sm text-gray-500">
-                                            {project.status}
+                                        <p className="text-gray-500 mt-2">
+                                            Completed
                                         </p>
 
                                     </div>
 
-                                    <span className="text-sm text-gray-500">
-                                        {project.progress}%
-                                    </span>
-
                                 </div>
 
-                            ))}
+                            </div>
+
+                        </div>
+
+                        {/* RECENT PROJECTS */}
+                        <div className="bg-[#f5f7fb] rounded-3xl p-6">
+
+                            <h2 className="text-3xl font-bold text-black mb-6">
+                                Recent Projects
+                            </h2>
+
+                            <div className="space-y-5">
+
+                                {(projects || []).map((project) => (
+
+                                    <div
+                                        key={project.id}
+                                        className="flex justify-between items-center bg-white rounded-2xl p-4"
+                                    >
+
+                                        <div>
+
+                                            <h3 className="font-semibold text-gray-800">
+                                                {project.title}
+                                            </h3>
+
+                                            <p className="text-sm text-gray-500">
+                                                Active
+                                            </p>
+
+                                        </div>
+
+                                        <span className="text-gray-500 text-sm">
+                                            {project.progress || 0}%
+                                        </span>
+
+                                    </div>
+
+                                ))}
+
+                            </div>
 
                         </div>
 
                     </div>
-
-                    <button
-  onClick={() => setShowTaskModal(true)}
-  className="bg-green-700 text-white px-4 py-2 rounded-xl text-sm mb-5"
->
-  Assign Task
-</button>
 
                 </div>
 
@@ -668,8 +503,8 @@ Assign Task
 
         </div>
 
-    );
+    </div>
 
+);
 }
-
 export default AdminDashboard;
