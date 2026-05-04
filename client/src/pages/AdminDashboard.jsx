@@ -214,7 +214,9 @@ const [deadline, setDeadline] =
 
     return (
 
-        <div className="min-h-screen bg-[#f5f7fb] p-6">
+        <div className="min-h-screen bg-[#eef2f7] p-6 flex justify-center">
+
+    <div className="w-full max-w-[1400px] bg-white rounded-[35px] shadow-xl p-8"></div>
 
             {/* HEADER */}
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
@@ -468,7 +470,7 @@ Assign Task
             </div>
 
             {/* MAIN GRID */}
-            <div className="min-h-screen bg-[#f5f7fb] p-6">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
                 {/* LEFT */}
                 <div className="xl:col-span-2 space-y-6">
@@ -531,7 +533,7 @@ Assign Task
                     {/* TASKS */}
                     <div className="bg-white rounded-3xl border border-gray-200 p-6">
 
-                        <h2 className="min-h-screen bg-[#f5f7fb] p-6">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
                             Assigned Tasks
                         </h2>
 
