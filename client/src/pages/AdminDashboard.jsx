@@ -417,9 +417,9 @@ Assign Task
 )}
 
             {/* STATS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
-                <div className="bg-green-700 text-white rounded-3xl p-6">
+                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
 
                     <p className="text-sm opacity-80 mb-3">
                         Total Projects
@@ -443,7 +443,7 @@ Assign Task
 
                 </div>
 
-                <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
 
                     <p className="text-sm text-gray-500 mb-3">
                         Running Tasks
@@ -455,7 +455,7 @@ Assign Task
 
                 </div>
 
-                <div className="bg-white rounded-3xl border border-gray-200 p-6">
+                <div className="bg-white rounded-3xl border border-gray-200 p-6 min-h-[140px] flex flex-col justify-center">
 
                     <p className="text-sm text-black-500 mb-3">
                         Pending Tasks
