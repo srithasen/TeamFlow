@@ -53,13 +53,13 @@ const Sidebar = ({ user }) => {
 
   return (
 
-    <div className="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between bg-white px-6 py-8 border-r border-gray-200">
+    <div className="h-screen w-[230px] fixed left-0 top-0 flex flex-col justify-between bg-white px-4 py-8 border-r border-gray-200">
 
       {/* TOP */}
       <div>
 
         {/* LOGO */}
-        <div className="mb-14">
+        <div className="mb-10 pl-2">
 
           <h1 className="text-3xl font-bold text-green-700">
             TeamFlow
@@ -81,7 +81,7 @@ const Sidebar = ({ user }) => {
               <button
                 key={item.name}
                 onClick={() => navigate(item.path)}
-                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-200 text-left ${
+                className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-200 text-left ${
                   location.pathname === item.path
                     ? "bg-green-100 text-green-700 font-semibold"
                     : "text-gray-600 hover:bg-gray-100"
@@ -107,7 +107,7 @@ const Sidebar = ({ user }) => {
       {/* BOTTOM */}
       <div>
 
-        <div className="bg-[#f5f7fb] rounded-3xl p-5 mb-5">
+        <div className="bg-[#f5f7fb] rounded-3xl p-4 mb-4">
 
   <div className="flex items-center gap-4">
 
