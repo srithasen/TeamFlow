@@ -1,4 +1,4 @@
-# TeamFlow – AI Productivity & Team Collaboration Platform
+# TeamFlow – Productivity & Team Collaboration Platform
 
 ## Project Overview
 
@@ -73,8 +73,7 @@ The application was developed using modern full-stack technologies including Rea
 
 ### users
 
-Stores user account details.
-
+Stores user account details
 Fields:
 
 * id
@@ -86,8 +85,7 @@ Fields:
 
 ### projects
 
-Stores project information.
-
+Stores project information
 Fields:
 
 * id
@@ -101,8 +99,7 @@ Fields:
 
 ### tasks
 
-Stores task details.
-
+Stores task details
 Fields:
 
 * id
@@ -150,23 +147,23 @@ Fields:
 
 ### Frontend Setup
 
-```bash
-npm install
-npm run dev
+```
+npm install  
+npm run dev  
 ```
 
 ### Backend Setup
 
-```bash
-npm install
-node app.js
+```
+npm install  
+node app.js  
 ```
 
 ---
 
 ## Environment Variables
 
-```env
+```
 MYSQLHOST=
 MYSQLUSER=
 MYSQLPASSWORD=
@@ -185,24 +182,21 @@ Frontend, backend, and database services were deployed using Railway. Environmen
 
 ## Challenges Faced During Development
 
-Several real-world full-stack development challenges were solved during this project:
-
-1. Backend deployment configuration
-2. Railway environment variable setup
-3. MySQL database connection handling
-4. Authentication and authorization logic
-5. Frontend-backend API integration
-6. Database schema creation and debugging
-7. React state handling issues
-8. API error handling and debugging
-9. Production deployment issues
-10. Connection pooling and database stability
+* Backend deployment configuration
+* Railway environment variable setup
+* MySQL database connection handling
+* Authentication and authorization logic
+* Frontend-backend API integration
+* Database schema creation and debugging
+* React state handling issues
+* API error handling and debugging
+* Production deployment issues
+* Connection pooling and database stability
 
 ---
 
 ## Future Enhancements
 
-* AI-powered productivity suggestions
 * Real-time notifications
 * Team chat system
 * File sharing support
